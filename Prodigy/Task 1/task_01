@@ -1,0 +1,40 @@
+def encrypt_caesar_cipher(message, shift):
+    encrypted_message = ""
+    for char in message:
+        if char.isalpha():
+            ascii_offset = ord('a') if char.islower() else ord('A')
+            encrypted_char = chr((ord(char) - ascii_offset + shift) % 26 + ascii_offset)
+        else:
+            encrypted_char = char
+        encrypted_message += encrypted_char
+    return encrypted_message
+
+def decrypt_caesar_cipher(encrypted_message, shift):
+    decrypted_message = ""
+    for char in encrypted_message:
+        if char.isalpha():
+            ascii_offset = ord('a') if char.islower() else ord('A')
+            decrypted_char = chr((ord(char) - ascii_offset - shift) % 26 + ascii_offset)
+        else:
+            decrypted_char = char
+        decrypted_message += decrypted_char
+    return decrypted_message
+
+def main():
+    print("Caesar Cipher")
+    print("1. Encrypt")
+    print("2. Decrypt")
+    choice = int(input("Enter your choice (1 or 2): "))
+    message = input("Enter the message: ")
+    shift = int(input("Enter the shift value: "))
+    if choice == 1:
+        encrypted_message = encrypt_caesar_cipher(message, shift)
+        print("Encrypted message:", encrypted_message)
+    elif choice == 2:
+        decrypted_message = decrypt_caesar_cipher(message, shift)
+        print("Decrypted message:", decrypted_message)
+    else:
+        print("Invalid choice.")
+
+if __name__ == "__main__":
+    main()
